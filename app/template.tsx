@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import Sidebar from '@/components/Sidebar'
+import type { Session } from '@supabase/supabase-js'
 
 export default function Template({ children }: { children: React.ReactNode }) {
   // ALL HOOKS AT TOP - ALWAYS 6 HOOKS
@@ -11,12 +12,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const [loading, setLoading] = useState(true)
   const [showSidebar, setShowSidebar] = useState(false)
-  const [session, setSession] = useState<any>(null)
+  const [session, setSession] = useState<Session | null>(null) // FIXED: Accepts Session or null
 
   useEffect(() => {
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession()
-      setSession(session)
+      setSession(session) // FIXED: This can now accept null
       
       const publicRoutes = ['/login', '/signup', '/']
       const isPublicRoute = publicRoutes.includes(pathname)
@@ -28,7 +29,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         router.push('/dashboard')
         setShowSidebar(true)
       } else {
-        setShowSidebar(session && !isPublicRoute)
+        setShowSidebar(!!session && !isPublicRoute) // FIXED: Convert to boolean with !!
       }
       
       setLoading(false)
