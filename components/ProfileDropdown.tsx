@@ -5,7 +5,7 @@ import { User, Moon, Sun, Type, MessageSquare, BookOpen, LogOut, ChevronDown } f
 import { supabase } from '@/lib/supabase'
 
 export default function ProfileDropdown() {
-  // ALL HOOKS AT TOP - NO CONDITIONALS
+  // ALL HOOKS AT TOP - ALWAYS 6 HOOKS
   const [isOpen, setIsOpen] = useState(false)
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   const [fontSize, setFontSize] = useState<'normal' | 'large'>('normal')

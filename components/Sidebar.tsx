@@ -7,6 +7,7 @@ import { Home, BookOpen, Settings, ChevronLeft, ChevronRight } from 'lucide-reac
 import ProfileDropdown from './ProfileDropdown'
 
 const Sidebar = () => {
+  // ALL HOOKS AT TOP - ALWAYS 2 HOOKS
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(true)
 
@@ -62,7 +63,7 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      {/* Profile Section - Always visible */}
+      {/* Profile Section */}
       <div className="p-4 border-t border-gray-800">
         <ProfileDropdown />
       </div>

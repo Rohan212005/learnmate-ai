@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Settings, Moon, Sun, Type, MessageSquare, BookOpen, Save, Bell, Globe, Shield } from 'lucide-react'
 
 export default function SettingsPage() {
+  // ALL HOOKS AT TOP - ALWAYS 5 HOOKS
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   const [fontSize, setFontSize] = useState<'normal' | 'large'>('normal')
   const [mode, setMode] = useState<'learning' | 'chat'>('learning')

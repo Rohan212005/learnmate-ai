@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { Brain, Lock, Mail } from 'lucide-react'
 
 export default function LoginPage() {
+  // ALL HOOKS AT TOP - ALWAYS 4 HOOKS
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -111,7 +112,7 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Demo Credentials - Optional */}
+          {/* Demo Credentials */}
           <div className="mt-8 p-4 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-700/50 rounded-xl border border-gray-200 dark:border-gray-700">
             <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
               <span className="font-semibold text-gray-700 dark:text-gray-300">Test Account:</span><br />

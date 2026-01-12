@@ -7,18 +7,14 @@ import LearningInterface from '@/components/LearningInterface'
 import ChatInterface from '@/components/ChatInterface'
 
 export default function DashboardPage() {
-  // ALL HOOKS IN PARENT - NO CONDITIONALS
+  // ALL HOOKS AT TOP - ALWAYS 11 HOOKS
   const [mode, setMode] = useState<'learning' | 'chat'>('learning')
   const [user, setUser] = useState<any>(null)
   const [history, setHistory] = useState<any[]>([])
-  
-  // Learning Interface States
   const [topic, setTopic] = useState('')
   const [level, setLevel] = useState('beginner')
   const [response, setResponse] = useState('')
   const [loading, setLoading] = useState(false)
-  
-  // Chat Interface States
   const [messages, setMessages] = useState<any[]>([
     {
       id: 1,
