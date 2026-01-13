@@ -53,7 +53,6 @@ export default function ProfilePage() {
   }
 
   const handleSaveProfile = async () => {
-    // In a real app, you would update user metadata here
     setIsEditing(false)
     alert('Profile updated! (Demo: Changes are not saved to database)')
   }
@@ -76,15 +75,17 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-6xl mx-auto">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center">
-          <User className="mr-3 text-blue-500" size={28} />
-          Your Profile
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400 mt-2">
-          Manage your account and track your learning journey
-        </p>
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-30 bg-gradient-to-b from-gray-50 to-transparent dark:from-gray-900 dark:to-transparent backdrop-blur-sm py-4 mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center">
+            <User className="mr-3 text-blue-500" size={28} />
+            Your Profile
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">
+            Manage your account and track your learning journey
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

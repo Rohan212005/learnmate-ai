@@ -6,7 +6,6 @@ import { History as HistoryIcon, Calendar, BookOpen, Filter, Trash2, Eye, X } fr
 import ReactMarkdown from 'react-markdown'
 
 export default function HistoryPage() {
-  // ALL HOOKS AT TOP - ALWAYS 5 HOOKS
   const [sessions, setSessions] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedSession, setSelectedSession] = useState<any>(null)
@@ -92,8 +91,8 @@ export default function HistoryPage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* Header */}
-      <div className="mb-8">
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-30 bg-gradient-to-b from-gray-50 to-transparent dark:from-gray-900 dark:to-transparent backdrop-blur-sm py-4 mb-8">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center">
@@ -237,7 +236,7 @@ export default function HistoryPage() {
 
         {/* Right Column - Session Detail */}
         <div className="lg:col-span-1">
-          <div className="sticky top-6">
+          <div className="sticky top-24">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
               <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6">
                 <div className="flex items-center justify-between">

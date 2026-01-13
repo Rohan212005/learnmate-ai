@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { Settings, Moon, Sun, Type, MessageSquare, BookOpen, Save, Bell, Globe, Shield } from 'lucide-react'
 
 export default function SettingsPage() {
-  // ALL HOOKS AT TOP - ALWAYS 5 HOOKS
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   const [fontSize, setFontSize] = useState<'normal' | 'large'>('normal')
   const [mode, setMode] = useState<'learning' | 'chat'>('learning')
@@ -37,15 +36,17 @@ export default function SettingsPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center">
-          <Settings className="mr-3 text-blue-500" size={28} />
-          Settings & Preferences
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400 mt-2">
-          Customize your LearnMate AI experience
-        </p>
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-30 bg-gradient-to-b from-gray-50 to-transparent dark:from-gray-900 dark:to-transparent backdrop-blur-sm py-4 mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center">
+            <Settings className="mr-3 text-blue-500" size={28} />
+            Settings & Preferences
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">
+            Customize your LearnMate AI experience
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

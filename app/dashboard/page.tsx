@@ -7,14 +7,11 @@ import LearningInterface from '@/components/LearningInterface'
 import ChatInterface from '@/components/ChatInterface'
 
 export default function DashboardPage() {
-  // ALL HOOKS AT TOP - ALWAYS 11 HOOKS
   const [mode, setMode] = useState<'learning' | 'chat'>('learning')
   const [user, setUser] = useState<any>(null)
   const [history, setHistory] = useState<any[]>([])
   const [topic, setTopic] = useState('')
   const [level, setLevel] = useState('beginner')
-  const [response, setResponse] = useState('')
-  const [loading, setLoading] = useState(false)
   const [messages, setMessages] = useState<any[]>([
     {
       id: 1,
@@ -53,45 +50,7 @@ export default function DashboardPage() {
 
   const handleLearningSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!topic.trim() || !user) return
-
-    setLoading(true)
-    setResponse('')
-
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          topic, 
-          level, 
-          userId: user.id
-        }),
-      })
-
-      const data = await res.json()
-      
-      if (data.success) {
-        setResponse(data.response)
-        
-        await supabase
-          .from('history')
-          .insert([{
-            user_id: user.id,
-            topic,
-            level,
-            response: data.response
-          }])
-        
-        fetchHistory(user.id)
-      } else {
-        setResponse(`Error: ${data.error}`)
-      }
-    } catch (error) {
-      setResponse('Error connecting to AI service.')
-    }
-
-    setLoading(false)
+    console.log('Learning submit triggered from dashboard')
   }
 
   const handleChatSend = async (e: React.FormEvent) => {
@@ -149,8 +108,8 @@ export default function DashboardPage() {
 
   return (
     <div className="h-full flex flex-col">
-      {/* Header */}
-      <div className="mb-6">
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-30 bg-gradient-to-b from-gray-50 to-transparent dark:from-gray-900 dark:to-transparent backdrop-blur-sm py-4 mb-6">
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center">
@@ -196,17 +155,24 @@ export default function DashboardPage() {
       {/* Show Learning or Chat Interface */}
       <div className="flex-1">
         {mode === 'learning' ? (
-          <LearningInterface 
-            user={user}
-            history={history}
-            topic={topic}
-            setTopic={setTopic}
-            level={level}
-            setLevel={setLevel}
-            response={response}
-            loading={loading}
-            onSubmit={handleLearningSubmit}
-          />
+          user ? (
+            <LearningInterface 
+              user={user}
+              history={history}
+              topic={topic}
+              setTopic={setTopic}
+              level={level}
+              setLevel={setLevel}
+              onSubmit={handleLearningSubmit}
+            />
+          ) : (
+            <div className="flex items-center justify-center h-64">
+              <div className="text-center">
+                <div className="inline-block w-8 h-8 border-3 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+                <p className="mt-4 text-gray-500 dark:text-gray-400">Loading user data...</p>
+              </div>
+            </div>
+          )
         ) : (
           <ChatInterface 
             messages={messages}

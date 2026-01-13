@@ -7,7 +7,6 @@ import { Home, BookOpen, Settings, ChevronLeft, ChevronRight } from 'lucide-reac
 import ProfileDropdown from './ProfileDropdown'
 
 const Sidebar = () => {
-  // ALL HOOKS AT TOP - ALWAYS 2 HOOKS
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(true)
 
@@ -18,7 +17,7 @@ const Sidebar = () => {
   ]
 
   return (
-    <div className={`bg-gray-900 text-white ${isOpen ? 'w-64' : 'w-20'} transition-all duration-300 flex flex-col min-h-screen`}>
+    <div className={`bg-gray-900 text-white ${isOpen ? 'w-64' : 'w-20'} h-screen flex flex-col fixed left-0 top-0 z-30`}>
       {/* Header */}
       <div className="p-5 border-b border-gray-800 flex items-center justify-between">
         <div className={`flex items-center ${isOpen ? 'space-x-3' : 'justify-center'}`}>
@@ -41,7 +40,7 @@ const Sidebar = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4">
+      <nav className="flex-1 p-4 overflow-y-auto">
         <ul className="space-y-2">
           {navItems.map((item) => (
             <li key={item.name}>
